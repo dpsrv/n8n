@@ -1,6 +1,6 @@
 services:
   dpsrv-n8n:
-    container_name: dpsrv-mysql-${tag:-latest}
+    container_name: dpsrv-n8n-${tag:-latest}
     image: n8nio/n8n:latest
     ports:
       - 5678:5678
@@ -8,7 +8,6 @@ services:
       - ${DPSRV_HOME}/rc/secrets/n8n/n8n.env
       - ${DPSRV_HOME}/rc/secrets/local/${HOSTNAME}/local.env
     volumes:
-      - ${DPSRV_NODE_HOME}/srv/n8n/:/home/node/.n8n/
-      - ${DPSRV_HOME}/srv/mysql/:/var/lib/mysql/
+      - ${DPSRV_HOME}/rc/secrets/n8n/.n8n/:/home/node/.n8n/
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
